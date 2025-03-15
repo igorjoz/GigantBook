@@ -1,0 +1,141 @@
+/* Ustawienia globalne */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Nawigacja */
+  .navbar {
+    background-color: #ffffff; /* Białe tło nawigacji */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Cień nawigacji */
+    border-bottom: 1px solid #cccccc; /* Delikatna linia podziału */
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+    color: #ff5722 !important; /* Pomarańczowy kolor dla brandu */
+  }
+  
+  .nav-link {
+    color: #000000 !important; /* Czarny tekst dla linków */
+  }
+  
+  .nav-link:hover {
+    color: #ff5722 !important; /* Pomarańczowy kolor dla linków po najechaniu */
+  }
+  
+  /* Stylizacja obrazka logo */
+  .navbar-img {
+    height: 40px; /* Wysokość obrazka */
+    margin-left: auto; /* Odsunięcie od linków nawigacyjnych */
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    height: 60vh;
+    color: white;
+    text-align: center;
+    background: linear-gradient(45deg, #ff5722, #ff9800); /* Gradientowe tło */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  /* Stylizacja przycisków */
+  .btn-primary {
+    background-color: #ff5722;
+    border-color: #ff5722;
+    border-radius: 50px; /* Zaokrąglone przyciski */
+  }
+  
+  .btn-primary:hover {
+    background-color: #e64a19;
+    border-color: #e64a19;
+  }
+  
+  .btn-success {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    border-radius: 50px;
+  }
+  
+  .btn-success:hover {
+    background-color: #43a047;
+    border-color: #43a047;
+  }
+  
+  .btn-light {
+    border-radius: 50px;
+  }
+  
+  .btn-light:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Stylizacja kart */
+  .card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Delikatny cień dla kart */
+  }
+  
+  .card-header {
+    background-color: #ff5722; /* Pomarańczowy nagłówek kart */
+    color: #ffffff; /* Biały tekst */
+  }
+  
+  /* Stylizacja formularzy */
+  .form-control {
+    border-radius: 50px; /* Zaokrąglone pola formularzy */
+    border-color: #ff5722;
+  }
+  
+  .form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 87, 34, 0.25);
+    border-color: #ff5722;
+  }
+  
+  /* Lista użytkowników */
+  .list-group-item {
+    transition: all 0.3s ease-in-out;
+    border: none; /* Usunięcie obramowania */
+    border-radius: 5px;
+  }
+  
+  .list-group-item:hover {
+    background-color: #f8f9fa;
+    transform: scale(1.02); /* Efekt powiększenia przy najechaniu */
+  }
+  
+  /* Alerty */
+  .alert {
+    border-radius: 15px; /* Zaokrąglone krawędzie alertów */
+  }
+  
+  .alert-danger {
+    background-color: #f44336; /* Czerwony kolor dla alertów */
+    color: #ffffff; /* Biały tekst */
+  }
+  
+  .alert-success {
+    background-color: #4caf50; /* Zielony kolor dla alertów */
+    color: #ffffff; /* Biały tekst */
+  }
+  
+  /* Container */
+  .container {
+    margin-top: 50px;
+    padding: 20px;
+  }
+  
+  /* Dodanie responsywności */
+  @media (max-width: 768px) {
+    .hero-section {
+      height: 50vh;
+    }
+  }
+  
