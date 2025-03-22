@@ -15,16 +15,17 @@
         </div>
         <button type="submit" class="btn btn-primary w-100 rounded-pill">Zaloguj się</button>
 
-        <!-- Wyświetlanie komunikatu sukcesu -->
+        <!-- Success message -->
         <div *ngIf="successMessage" class="mt-3 alert alert-success rounded">
           {{ successMessage }}
         </div>
 
-        <!-- Wyświetlanie komunikatu błędu -->
+        <!-- Error message -->
         <div *ngIf="errorMessage" class="mt-3 alert alert-danger rounded">
           {{ errorMessage }}
         </div>
 
+        <!-- ChatGPT assistant response -->
         <div *ngIf="assistantResponse" class="mt-3 alert alert-info rounded">
           <strong>Asystent:</strong> {{ assistantResponse }}
         </div>

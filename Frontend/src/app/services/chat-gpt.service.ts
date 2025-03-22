@@ -11,7 +11,7 @@ export class ChatGptService {
   private apiUrl = 'https://api.openai.com/v1/chat/completions';
 
   // Klucz API OpenAI - zastąp go swoim kluczem
-  private apiKey = 'YOUR_OPENAI_API_KEY';
+  private apiKey = 'API_KEY';
 
   constructor(private http: HttpClient) {}
 
@@ -26,7 +26,7 @@ export class ChatGptService {
 
   // Treść zapytania do API OpenAI
   const body = {
-    model: "gpt-3.5-turbo", // Model GPT-3.5-turbo (można zmienić na inny dostępny model)
+    model: "gpt-4o-mini-2024-07-18", // Model można zmienić na inny dostępny
     messages: [{ role: "user", content: message }], // Wiadomość użytkownika do wysłania
     max_tokens: 150 // Maksymalna liczba tokenów (słów) w odpowiedzi
     };
