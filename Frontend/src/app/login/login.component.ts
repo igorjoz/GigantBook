@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -13,7 +17,7 @@ export class LoginComponent {
     password: ''
   };
   errorMessage = '';
-  successMessage = ''; // Dodaj zmienną na komunikat sukcesu
+  successMessage = '';
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -21,21 +25,17 @@ export class LoginComponent {
     this.userService.getUsers().subscribe(users => {
       const user = users.find(u => u.email === this.credentials.email && u.password === this.credentials.password);
       if (user) {
-        // Przechowaj informacje o zalogowanym użytkowniku, np. w lokalnej pamięci
-        localStorage.setItem('userId', user.id);
-        
-        // Wyświetl powiadomienie o sukcesie
+        if (user.id !== undefined && user.id !== null) {
+          localStorage.setItem('userId', user.id.toString());
+        }
         this.successMessage = 'Poprawnie zalogowano!';
-        this.errorMessage = ''; // Wyczyść ewentualne poprzednie błędy
-        
-        // Po krótkim czasie przekieruj na stronę profilu
+        this.errorMessage = '';
         setTimeout(() => {
           this.router.navigate(['/profile']);
-        }, 2000); // Opóźnienie 2 sekundy przed przekierowaniem
-
+        }, 2000);
       } else {
         this.errorMessage = 'Nieprawidłowe dane logowania';
-        this.successMessage = ''; // Wyczyść komunikat sukcesu w przypadku błędu
+        this.successMessage = '';
       }
     });
   }
