@@ -23,7 +23,11 @@ export class LoginComponent implements OnInit {
   assistantResponse: string = '';
   users: User[] = []; // List of users
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private chatGptService: ChatGptService  // Fix: Inject ChatGptService
+  ) {}
 
   ngOnInit(): void {
     this.loadUsers();
