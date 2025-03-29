@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService, User } from '../services/user.service';
+import { ChatGptService } from '../services/chat-gpt.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -16,8 +17,10 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   };
-  errorMessage = '';
-  successMessage = '';
+
+  errorMessage: string = '';
+  successMessage: string = '';
+  assistantResponse: string = '';
   users: User[] = []; // List of users
 
   constructor(private userService: UserService, private router: Router) {}
@@ -47,6 +50,22 @@ export class LoginComponent implements OnInit {
         }
         this.successMessage = 'Poprawnie zalogowano!';
         this.errorMessage = '';
+
+        // Send a request to ChatGPT
+        this.chatGptService.sendMessageToChatGPT('Co to ser szwajcarski?').subscribe({
+          next: (response: any) => {
+            this.assistantResponse = response.choices[0].message.content;
+          },
+          error: (error) => {
+            if (error.status === 429) {
+              this.assistantResponse = 'Przekroczono limit zapytań. Proszę spróbować ponownie później.';
+            } else {
+              console.error('Błąd podczas komunikacji z ChatGPT:', error);
+              this.assistantResponse = 'Niestety, wystąpił problem z połączeniem z asystentem.';
+            }
+          }
+        });
+
         setTimeout(() => {
           this.router.navigate(['/profile']);
         }, 2000);
