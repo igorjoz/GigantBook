@@ -41,19 +41,19 @@ namespace Backend.Controllers
         {
             if (user == null)
             {
-                return BadRequest("User data is required.");
+                return BadRequest("User data is required");
             }
 
             try
             {
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
+
                 return CreatedAtAction("GetUser", new { id = user.Id }, user);
             }
-
             catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred while creating the user.Please try again later.");
+                return StatusCode(500, "Error while adding user");
             }
         }
 
@@ -71,7 +71,7 @@ namespace Backend.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
                 if (!UserExists(id))
                 {
@@ -88,7 +88,7 @@ namespace Backend.Controllers
 
         private bool UserExists(int id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.Users.Any(user => user.Id == id);
         }
     }
 }

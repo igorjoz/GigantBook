@@ -16,6 +16,7 @@
         <button type="submit" class="btn btn-primary w-100 rounded-pill">Zaloguj się</button>
 
         <!-- Success message -->
+        <!-- Display success message -->
         <div *ngIf="successMessage" class="mt-3 alert alert-success rounded">
           {{ successMessage }}
         </div>
@@ -30,6 +31,25 @@
           <strong>Asystent:</strong> {{ assistantResponse }}
         </div>
       </form>
+      <!-- Display error message -->
+      <div *ngIf="errorMessage" class="mt-3 alert alert-danger rounded">
+        {{ errorMessage }}
+      </div>
+      </form>
+
+      <!-- List of Users -->
+      <div class="mt-4">
+        <h3>Lista Użytkowników</h3>
+        <ul class="list-group">
+          <li *ngFor="let user of users" class="list-group-item">
+            {{ user.firstName }} {{ user.lastName }} ({{ user.email }})
+          </li>
+        </ul>
+        <div *ngIf="users.length === 0" class="alert alert-info mt-3">
+          Brak użytkowników.
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

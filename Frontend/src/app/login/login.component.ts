@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../services/user.service';
+import { UserService, User } from '../services/user.service';
 import { ChatGptService } from '../services/chat-gpt.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   credentials = {
     email: '',
     password: ''
@@ -21,14 +21,27 @@ export class LoginComponent {
   errorMessage: string = '';
   successMessage: string = '';
   assistantResponse: string = '';
+  users: User[] = []; // List of users
 
-  constructor(
-    private userService: UserService,
-    private router: Router,
-    private chatGptService: ChatGptService
-  ) {}
+  constructor(private userService: UserService, private router: Router) {}
 
-  onSubmit() {
+  ngOnInit(): void {
+    this.loadUsers();
+  }
+
+  loadUsers(): void {
+    this.userService.getUsers().subscribe({
+      next: (data: User[]) => {
+        this.users = data;
+      },
+      error: (error) => {
+        console.error('Błąd podczas pobierania użytkowników:', error);
+      }
+    });
+  }
+
+  onSubmit(): void {
+    // Attempt to log in the user based on entered credentials.
     this.userService.getUsers().subscribe(users => {
       const user = users.find(u => u.email === this.credentials.email && u.password === this.credentials.password);
       if (user) {
